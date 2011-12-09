@@ -1,0 +1,636 @@
+
+snippet php
+	<?php
+	${1}
+	?>
+
+snippet pecho
+	<?php echo ${1} ?>${0}
+
+snippet echoh
+	<?php echo htmlentities(${1}, ENT_QUOTES, 'utf-8') ?>${0}
+
+snippet pfore
+	<?$php foreach ($${1:variable} as $${2:key}${3: =>}): ?>
+	${0}
+	<?php endforeach ?>
+
+snippet pife
+	<?php if (${1:condition}): ?>
+	${2}
+	<?php else: ?>
+	${0}
+	<?php endif ?>
+
+snippet pif
+	<?php if (${1:condition}): ?>
+	${0}
+	<?php endif ?>
+
+snippet pelse
+	<?php else: ?>
+
+snippet this
+	<?php $this->${0} ?>
+
+snippet ethis
+	<?php echo $this->${0} ?>
+
+snippet docc
+	/**
+	 * ${3:undocumented class variable}
+	 *
+	 * @var ${4:string}
+	 **/
+	${1:var} \$${2};${0}
+
+snippet docd
+	/**
+	 * ${3:undocumented constant}
+	 **/
+	define(${1} ${2});${0}
+
+snippet docs
+	/**
+	 * ${4:undocumented function}
+	 *
+	 * @return ${5:void}
+	 * @author ${6}
+	 **/
+	${1}function ${2}(${3});${0}
+
+snippet docf
+	/**
+	 * ${4:undocumented function}
+	 *
+	 * @return ${5:void}
+	 * @author ${6}
+	 **/
+	${1}function ${2}(${3})
+	{
+		${0}
+	}
+
+
+snippet doch
+	/**
+	 * ${1}
+	 *
+	 * @author ${2}
+	 * @version ${3}
+	 * @copyright ${4}
+	 * @package ${5:default}
+	 **/
+	
+	/**
+	 * Define DocBlock
+	 **/
+
+snippet doci
+	/**
+	 * ${2:undocumented class}
+	 *
+	 * @package ${3:default}
+	 * @author ${4}
+	 **/
+	interface ${1}
+	{
+		${0}
+	} // END interface ${1}
+
+snippet c
+	/**
+	 * $0
+	 */
+
+snippet class
+abbr class
+	// {{{ ${1}
+	/**
+	 * $1 Class
+	 *
+	 * ${2:Long description for class (if any)...}
+	 *
+	 * @category   ${3:CategoryName}
+	 * @package    ${4:PackageName}
+	 * @author     ${5:satoshi.sasaki<froggugugugu@gmail.com>}
+	 * @copyright  2011-2011 
+	 * @license    http://www.opensource.org/licenses/mit-license.html MIT License
+	 * @version    Release: ${6:@package_version@}
+	 */
+	class $1 
+	${7:extends}
+	{
+		// {{{ const
+		// }}} 
+ 		// {{{ props
+		// }}} 
+		// {{{ __construct
+		/**
+		 * コンストラクタ 
+		 *
+		 * @param ${8:type} ${9:argname} ${10:discription} 
+		 **/	
+		function __construct($$9)
+		{
+			${0:# code...}
+		}
+		// }}} 
+		// {{{ __destruct
+		/**
+		 * デストラクタ 
+		 **/	
+		function __destruct()
+		{
+			${0:# code...}
+		}
+		// }}} 
+	}
+	// }}}
+
+snippet props 
+	/**
+	 * ${3:undocumented class variable}
+	 *
+	 * @var ${4:string}
+	 **/
+	${1:var} $${2};${0}
+
+nippet docc
+	/**
+	 * ${3:undocumented class variable}
+	 *
+	 * @var ${4:string}
+	 **/
+	${1:var} \$${2};${0}
+
+
+snippet def
+	${1}defined('${2}')${0}
+
+
+snippet do
+	do {
+		${0:# code...}
+	} while (${1});
+
+snippet if? 
+	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b} ;
+
+snippet ifelse
+	if (${1:condition}) {
+		${2:# code...}
+	} else {
+		${3:# code...}
+	}
+	${0}
+
+snippet if
+	if (${1:condition}) {
+		${0:# code...}
+	}
+
+snippet echo
+	echo "${1:string}"${0};
+
+snippet else
+	else {
+		${0:# code...}
+	}
+
+snippet elseif
+	elseif (${1:condition}) {
+		${0:# code...}
+	}
+
+snippet for
+	for ($${1:i}=${2:0}; $${1:i} < ${3}; $${1:i}++) { 
+		${0:# code...}
+	}
+
+snippet fore
+	foreach ($${1:variable} as $${2:key}${3: =>} $${4:value}) {
+		${0:# code...}
+	}
+
+snippet func
+abbr function
+	// {{{ ${1:functionName}
+	/**
+	* ${8}
+	*
+	* @param ${2:type} $${3:argname} ${4:discription}
+	* @return ${5:type} ${6:discription}
+	*/
+	${7:public }function $1($$3)
+	{
+		${0:# code...}
+	}
+	// }}}
+
+snippet con
+	function __construct(${1})
+	{
+		${0}
+	}
+
+snippet des
+	function __destruct()
+	{
+		${0}
+	}
+
+snippet here
+	<<<${1:HTML}
+	${2:content here}
+	$1;
+
+snippet inc
+	include '${1:file}';${0}
+
+snippet inco
+	include_once '${1:file}';${0}
+
+snippet array
+	$${1:arrayName} = array('${2}' => ${3} ${0});
+
+snippet req
+	require '${1:file}';${0}
+
+snippet reqo
+	require_once '${1:file}';${0}
+
+snippet ret
+	return${1};${0}
+
+snippet retf
+	return false;
+
+snippet rett
+	return true;
+
+snippet case
+	case '${1:variable}':
+		${0:# code...}
+		break;
+
+snippet switch
+abbr sw
+	switch (${1:variable}) {
+	case '${2:value}':
+		${3:# code...}
+		break;
+	${0}
+	default:
+		${4:# code...}
+		break;
+	}
+
+snippet throw
+	throw new ${1}Exception(${2:"${3:Error Processing Request}"}${4:});
+	${0}
+
+snippet while
+abbr wh
+	while (${1}) {
+		${0:# code...}
+	}
+
+snippet gloabals
+	\$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${0}
+
+snippet cookie
+	\$_COOKIE['${1:variable}']
+
+snippet env
+	\$_ENV['${1:variable}']
+
+snippet files
+	\$_FILES['${1:variable}']
+
+snippet get
+	\$_GET['${1:variable}']
+
+snippet post
+	\$_POST['${1:variable}']
+
+snippet request
+	\$_REQUEST['${1:variable}']
+
+snippet server
+	\$_SERVER['${1:variable}']
+
+snippet session
+	\$_SESSION['${1:variable}']
+
+
+
+
+
+
+snippet testClass
+abbr testClass
+	// {{{ ${1}Test
+	/**
+	 * $1Test Class
+	 *
+	 * ${2:Long description for class (if any)...}
+	 *
+	 * @category   ${3:CategoryName}
+	 * @package    ${4:PackageName}
+	 * @author     ${5:satoshi.sasaki<froggugugugu@gmail.com>}
+	 * @copyright  2011-2011 
+	 * @license    http://www.opensource.org/licenses/mit-license.html MIT License
+	 * @version    Release: ${6:@package_version@}
+	 */
+	class $1Test 
+	extends PHPUnit_Framework_TestCase
+	{
+	   
+		// {{{ //テストケース実行前
+		/**
+		 * setUp
+		 *
+		 * @return void
+		 */
+		protected function setUp()
+		{
+		}
+		// }}}
+		
+		// {{{ //テストメソッド実行後
+		/**
+		 * tearDown
+		 *
+		 * @return void
+		 */
+		protected function tearDown()
+		{
+		}
+		// }}}
+		
+		// {{{ //
+		/**
+		 * ${7}
+		 *
+		 */
+		public function testHoge()
+		{
+		    $this->assertEquals(XXXXX,XXXXX);
+		}
+		// }}}
+	}
+
+snippet fileheader
+abbr fileheader
+<?php
+/**
+ * ${1:Short description for file}
+ *
+ * ${2:Long description for file (if any)...}
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @category   ${3:CategoryName}
+ * @package    ${4:PackageName}
+ * @author     ${5:satoshi.sasaki<froggugugugu@gmail.com>}
+ * @copyright  2011-2011
+ */
+
+/*
+* Place includes, constant defines and $_GLOBAL settings here.
+* Make sure they have appropriate docblocks to avoid phpDocumentor
+* construing they are documented by the page-level docblock.
+*/
+
+snippet assertArrayHasKey
+	assertArrayHasKey($${1:key}, $${2:array}${3:, $${0:message = ''}})
+    
+snippet assertArrayNotHasKey
+	assertArrayNotHasKey($${1:key}, $${2:array}${3:, $${0:message = ''}})
+
+snippet assertClassHasAttribute
+	assertClassHasAttribute($${1:attributeName}, $${2:className}${3:, $${0:message = ''}})
+
+snippet assertClassNotHasAttribute
+	assertClassNotHasAttribute($${1:attributeName}, $${2:className}${3:, $${0:message = ''}})
+
+snippet assertClassHasStaticAttribute
+	assertClassHasStaticAttribute($${1:attributeName}, $${2:className}${3:, $${0:message = ''}})
+
+snippet assertClassNotHasStaticAttribute
+	assertClassNotHasStaticAttribute($${1:attributeName}, $${2:className}${3:, $${0:message = ''}})
+
+snippet assertContains
+	assertContains($${1:needle}, $${2:haystack}${3:, $${0:message = ''}})
+
+snippet assertNotContains
+	assertNotContains($${1:needle}, $${2:haystack}${3:, $${0:message = ''}})
+
+snippet assertAttributeContains
+	assertAttributeContains($${1:needle}, $${2:haystack}${3:, $${0:message = ''}})
+
+snippet assertAttributeNotContains
+	assertAttributeNotContains($${1:needle}, $${2:haystack}${3:, $${0:message = ''}})
+
+snippet assertContainsOnly
+	assertContainsOnly($${1:type}, $${2:haystack}${3:, $${4:isNativeType = NULL}, $${0:message = ''}})
+
+snippet assertNotContainsOnly
+	assertNotContainsOnly($${1:type}, $${2:haystack}${3:, $${4:isNativeType = NULL}, $${0:message = ''}})
+
+snippet assertAttributeContainsOnly
+	assertAttributeContainsOnly($${1:type}, $${2:haystack}${3:, $${4:isNativeType = NULL}, $${0:message = ''}})
+
+snippet assertAttributeNotContainsOnly
+	assertAttributeNotContainsOnly($${1:type}, $${2:haystack}${3:, $${4:isNativeType = NULL}, $${0:message = ''}})
+
+snippet assertEmpty
+	assertEmpty($${1:actual}${2:, $${0:message = ''}})
+
+snippet assertNotEmpty
+	assertNotEmpty($${1:actual}${2:, $${0:message = ''}})
+
+snippet assertAttributeEmpty
+	assertAttributeEmpty($${1:actual}${2:, $${0:message = ''}})
+
+snippet assertAttributeNotEmpty
+	assertAttributeNotEmpty($${1:actual}${2:, $${0:message = ''}})
+
+snippet assertEqualXMLStructure
+	assertEqualXMLStructure($${1:expectedElement}, $${2:actualElement}${3:, $${4:checkAttributes = FALSE},$${0:message = ''}})
+
+snippet assertEquals
+	assertEquals($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertNotEquals
+	assertNotEquals($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeEquals
+	assertAttributeEquals($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeNotEquals
+	assertAttributeNotEquals($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertFalse
+	assertFalse($${1:condition}${2:, $${0:message = ''}})
+
+snippet assertFileEquals
+	assertFileEquals($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertFileNotEquals
+	assertFileNotEquals($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertFileExists
+	assertFileExists($${1:filename}${2:, $${0:message = ''}})
+
+snippet assertFileNotExists
+	assertFileNotExists($${1:filename}${2:, $${0:message = ''}})
+
+snippet assertGreaterThan
+	assertGreaterThan($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeGreaterThan
+	assertAttributeGreaterThan($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertGreaterThanOrEqual
+	assertGreaterThanOrEqual($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeGreaterThanOrEqual
+	assertAttributeGreaterThanOrEqual($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertInstanceOf
+	assertInstanceOf($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertNotInstanceOf
+	assertNotInstanceOf($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeInstanceOf
+	assertAttributeInstanceOf($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeNotInstanceOf
+	assertAttributeNotInstanceOf($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertInternalType
+	assertInternalType($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertNotInternalType
+	assertNotInternalType($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeInternalType
+	assertAttributeInternalType($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeNotInternalType
+	assertAttributeNotInternalType($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertLessThan
+	assertLessThan($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeLessThan
+	assertAttributeLessThan($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertLessThanOrEqual
+	assertLessThanOrEqual($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeLessThanOrEqual
+	assertAttributeLessThanOrEqual($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertNull
+	assertNull($${1:variable}${2:, $${0:message = ''}})
+
+snippet assertNotNull
+	assertNotNull($${1:variable}${2:, $${0:message = ''}})
+
+snippet assertObjectHasAttribute
+	assertObjectHasAttribute($${1:attributeName}, $${2:object}${3:, $${0:message = ''}})
+
+snippet assertObjectNotHasAttribute
+	assertObjectNotHasAttribute($${1:attributeName}, $${2:object}${3:, $${0:message = ''}})
+
+snippet assertRegExp
+	assertRegExp($${1:pattern}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertNotRegExp
+	assertNotRegExp($${1:pattern}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertStringMatchesFormat
+	assertStringMatchesFormat($${1:format}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertStringNotMatchesFormat
+	assertStringNotMatchesFormat($${1:format}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertStringMatchesFormatFile
+	assertStringMatchesFormatFile($${1:formatFile}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertStringNotMatchesFormatFile
+	assertStringNotMatchesFormatFile($${1:formatFile}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertSame
+	assertSame($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertNotSame
+	assertNotSame($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertAttributeSame
+	assertAttributeSame($${1:expected}, $${2:actual}${3:, $${0:message = ''}})
+
+snippet assertSelectCount
+	assertSelectCount($${1:selector}, $${2:count}, $${3:actual}${4:, $${5:message = ''}, $${0:isHtml = TRUE}})
+
+snippet assertSelectEquals
+	assertSelectEquals($${1:selector}, $${2:content}, $${3:count}, $${4:actual}${5:, $${6:message = ''}, $${0:isHtml = TRUE}})
+
+snippet assertSelectRegExp
+	assertSelectRegExp($${1:selector}, $${2:pattern}, $${3:count}, $${4:actual}${5:, $${6:message = ''}, $${0:isHtml = TRUE}})
+
+snippet assertStringEndsWith
+	assertStringEndsWith($${1:suffix}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertStringEndsNotWith
+	assertStringEndsNotWith($${1:suffix}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertStringEqualsFile
+	assertStringEqualsFile($${1:expectedFile}, $${2:actualString}${3:, $${0:message = ''}})
+
+snippet assertStringNotEqualsFile
+	assertStringNotEqualsFile($${1:expectedFile}, $${2:actualString}${3:, $${0:message = ''}})
+
+snippet assertStringStartsWith
+	assertStringStartsWith($${1:prefix}, $${2:string}${3:, $${0:message = ''}})
+
+snippet assertStringStartsNotWith
+	assertStringStartsNotWith($${1:prefix}, $${2:string}${3:, $${0:message = ''}})
+    
+snippet assertTag
+	assertTag($${1:matcher}, $${2:actual}${3:, $message = ''}${0:, $isHtml = TRUE})
+
+snippet assertNotTag
+	assertNotTag($${1:matcher}, $${2:actual}${3:, $message = ''}${0:, $isHtml = TRUE})
+
+snippet assertThat
+	assertThat($${1:value}, $${2:constraint$${3:, $${0:message = ''}})
+
+snippet assertXmlFileEqualsXmlFile
+	assertXmlFileEqualsXmlFile($${1:expectedFile}, $${2:actualFile}${3:, $${0:message = ''}})
+
+snippet assertXmlFileNotEqualsXmlFile
+	assertXmlFileNotEqualsXmlFile($${1:expectedFile}, $${2:actualFile}${3:, $${0:message = ''}})
+
+snippet assertXmlStringEqualsXmlFile
+	assertXmlStringEqualsXmlFile($${1:expectedFile}, $${2:actualXml}${3:, $${0:message = ''}})
+
+snippet assertXmlStringNotEqualsXmlFile
+	assertXmlStringNotEqualsXmlFile($${1:expectedFile}, $${2:actualXml}${3:, $${0:message = ''}})
+
+snippet assertXmlStringEqualsXmlString
+	assertXmlStringEqualsXmlString($${1:expectedXml}, $${2:actualXml}${3:, $${0:message = ''}})
+
+snippet assertXmlStringNotEqualsXmlString
+	assertXmlStringNotEqualsXmlString($${1:expectedXml}, $${2:actualXml}${3:, $${0:message = ''}})
+

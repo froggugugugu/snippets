@@ -1,0 +1,417 @@
+# Prototype
+snippet proto
+	$<1:class_name>.prototype.${2:method_name} =
+	function(${3:first_argument}) {
+		${4:// body...}
+	};
+
+# Function
+snippet fun
+	function ${1:function_name} (${2:argument}) {
+		${3:// body...}
+	}
+
+# Object Method
+snippet :f
+	/**
+	 * $1
+	 * ${5}
+	 */
+	${1:method_name} : function(${2:attribute}) {
+		${4}
+	}${3:,}
+
+# Anonymous Function
+snippet f
+	function(${1}) {${2}};
+
+# if
+snippet if
+	if (${1:true}) {${2}};
+
+# if ... else
+snippet ife
+	if (${1:true}) {${2}}
+	else{${3}};
+
+# tertiary conditional
+snippet t
+	${1:/* condition */} ? ${2:a} : ${3:b}
+
+# switch
+snippet switch
+	switch(${1:expression}) {
+		case '${3:case}':
+			${4:// code}
+			break;
+		${5}
+		default:
+			${2:// code}
+	}
+
+# case
+snippet case
+	case '${1:case}':
+		${2:// code}
+		break;
+	${3}
+
+# for (...) {...}
+snippet for
+	for (var ${2:i} = 0; $2 < ${1:Things}.length; $2${3:++}) {
+		${4:$1[$2]}
+	};
+
+# for (...) {...} (Improved Native For-Loop)
+snippet forr
+	for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2${3:--}) {
+		${4:$1[$2]}
+	};
+
+# while (...) {...}
+snippet wh
+	while (${1:/* condition */}) {
+		${2:/* code */}
+	}
+
+# do...while
+snippet do
+	do {
+		${2:/* code */}
+	} while (${1:/* condition */});
+
+# setTimeout function
+snippet timeout
+	setTimeout(function() {${3}}${2}, ${1:10};
+
+# Get Elements
+snippet get
+	getElementsBy${1:TagName}('${2}')${3}
+
+# Get Element
+snippet gett
+	getElementBy${1:Id}('${2}')${3}
+
+##########
+#Extjs 4
+##########
+snippet extstart
+	<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="./ext/resources/css/ext-all.css" />
+
+		<script type="text/javascript" src="./ext/ext-all.js"></script>
+		<script type="text/javascript" src="./src/app.js"></script>
+
+	</head>
+	<body>
+	</body>
+	</html>
+
+snippet extprop
+	//{{{ ${1:prop}
+	
+	$1 : ''${2:,}
+	
+	//}}}
+
+snippet extapp
+	// {{{ namespace
+	
+	Ext.ns('${1:AppName}');
+	
+	// }}}
+	// {{{ Ext.Loader
+	
+	Ext.Loader.setConfig({
+		enabled: true,
+		paths: {
+			'Ext': '${2:./ext/src}',
+			'$1': './src',
+		}
+	});
+	
+	// }}}
+	// {{{ Ext.application
+	
+	Ext.application({
+	
+		// {{{ name
+	
+		name: '$1',
+	
+		// }}}
+		// {{{ appFolder
+	
+		appFolder: '${3:src/app}',
+	
+		// }}}
+		// {{{ controllers
+	
+		controllers: [
+			'XXXXXX'
+		],
+	
+		// }}}
+		// {{{ launch
+	
+		launch: function() {
+	
+			Ext.create('$1.view.Viewport');
+	
+		}
+	
+		// }}}
+	
+	});
+	
+	// }}}
+
+snippet extpanel
+	// {{{ '${1:classname}',
+	/**
+	 * @class $1
+	 * ${2:}
+	 */
+	Ext.define('$1', {
+		// {{{ extend
+
+		extend : '${3:Ext.Panel}',
+
+		// }}}
+		// {{{ alias
+
+		alias : 'widget.${4:component}',
+
+		// }}}
+		// {{{ requires
+
+		requires : [
+		],
+
+		// }}}
+		// {{{ ui
+
+		//ui : 'styleclass',
+
+		// }}}
+		// {{{ items
+
+		items : [{
+			html : 'item'
+		}]
+
+		// }}}
+	});
+	// }}}
+
+snippet extmodel
+	// {{{ '${1:classname}',
+	/**
+	 * @class $1
+	 * ${2:}
+	 */
+	Ext.define('$1', {
+		// {{{ extend
+
+		extend : '$2{Ext.data.Model}',
+
+		// }}}
+		// {{{ alias
+
+		alias : '${3:model}',
+
+		// }}}
+		// {{{ requires
+
+		requires : [
+		],
+
+		// }}}
+		// {{{ fields 
+
+		fields: [
+			{name: 'hoge1', type: 'auto'/*, defaultValue: '', convert: function(){}*/},
+			{name: 'hoge2', type: 'auto'/*, defaultValue: '', convert: function(){}*/},
+		]
+
+		// }}}
+
+	});
+	// }}}
+
+snippet extstore
+	// {{{ '${1:classname}',
+	/**
+	 * @class $1
+	 * ${2:}
+	 */
+	Ext.define('$1', {
+		// {{{ extend
+
+		extend : '${Ext.data.ArrayStore}',
+
+		// }}}
+		// {{{ alias
+
+		alias : '${2:store}',
+
+		// }}}
+		// {{{ requires
+
+		requires : [
+		],
+
+		// }}}
+		// {{{ model
+
+		model : '${3:model}',
+
+		// }}}
+		// {{{ data
+
+		data : [
+			['hoge','fuga']
+		]
+
+		// }}}
+	});
+	// }}}
+
+snippet extcontroller
+	// {{{ '${1:classname}',
+	/**
+	 * @class $1
+	 * ${2:}
+	 */
+	Ext.define('$1', {
+		// {{{ extend
+
+		extend : '${Ext.controller.Controller}',
+
+		// }}}
+		// {{{ requires
+
+		requires : [
+		],
+
+		// }}}
+		// {{{ views 
+
+		views:[
+			'Test'
+		],
+
+		// }}}
+		// {{{ models 
+
+		models: [
+			 'hoge'
+		],
+		
+		// }}}
+		// {{{ stores
+
+		stores: [
+			'hoge'
+		],
+
+		// }}}
+		// {{{ init 
+
+		//アプリケーション起動時にコールされる特別なメソッド
+		//ApplicationのLaunch前にコールされる
+		init: function() {
+
+			this.control({
+
+				//コンポーネントクエリでのハンドラ設定
+				'viewport > panel': {
+					render: this.onXXXX
+				}
+
+			});
+
+		},
+
+		// }}}
+		// {{{ onXXXX 
+
+		onXXXX: function() {
+			console.log('hoge');
+		}
+
+		// }}}
+	});
+	// }}}
+
+snippet extclass
+	// {{{ '${1:classname}',
+	/**
+	 * @class $1
+	 * ${2:}
+	 */
+	Ext.define('$1', {
+
+		// {{{ extend
+
+		extend : '${3:Ext.Base}',
+
+		// }}}
+		// {{{ alias
+
+		alias : '${4:hogehoge}',
+
+		// }}}
+		// {{{ requires
+
+		requires : [
+		],
+
+		// }}}
+		// {{{ config(prefonfigure setting)
+		
+		config : {
+			XXXX : '';
+		},
+
+		// }}}	
+		// {{{ constructor 
+
+		constructor : function(config){
+			ver me = this;
+			this.initConfig(config);
+		},
+
+		// }}}
+		// {{{ applyXXXX
+		
+		applyXXXX : function(val){
+			return val;
+		},
+
+		// }}}
+		// {{{ statics
+		
+		statics : {
+		},
+
+		// }}}
+		// {{{ init
+		
+		init : function(){
+		},
+
+		// }}}
+	
+	}, function(){
+		var me = this;
+		me.init();
+	});
+
+	// }}}
+
+
