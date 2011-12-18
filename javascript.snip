@@ -95,22 +95,6 @@ snippet gett
 ##########
 #Extjs 4
 ##########
-snippet extstart
-	<html>
-	<head>
-		<meta charset="UTF-8" />
-		<title></title>
-
-		<link rel="stylesheet" type="text/css" href="./ext/resources/css/ext-all.css" />
-
-		<script type="text/javascript" src="./ext/ext-all.js"></script>
-		<script type="text/javascript" src="./src/app.js"></script>
-
-	</head>
-	<body>
-	</body>
-	</html>
-
 snippet extprop
 	//{{{ ${1:prop}
 	
@@ -150,11 +134,11 @@ snippet extapp
 	
 		// }}}
 		// {{{ controllers
-	
+		/*
 		controllers: [
 			'XXXXXX'
 		],
-	
+		*/
 		// }}}
 		// {{{ launch
 	
@@ -168,6 +152,64 @@ snippet extapp
 	
 	});
 	
+	// }}}
+
+snippet extviewport
+	// {{{ ${1:app}.view.Viewport
+
+	Ext.define('$1.view.Viewport', {
+
+		// {{{ requires
+
+		requires: [
+		],
+
+		// }}}
+		// {{{ extend
+
+		extend: 'Ext.container.Viewport',
+
+		// }}}
+		// {{{ layout
+
+		layout: {
+			type: 'border',
+			padding: 5
+		},
+
+		// }}}
+		// {{{ items
+
+		items: [{
+
+			region: 'north'
+
+		},{
+
+			region: 'west'
+
+		},{
+
+			region: 'center'
+
+		},{
+
+			region: 'east'
+
+		},{
+
+			region: 'east'
+
+		},{
+
+			region: 'south'
+
+		}]
+
+		// }}}
+
+	});
+
 	// }}}
 
 snippet extpanel
