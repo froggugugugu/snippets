@@ -96,20 +96,20 @@ snippet gett
 #Extjs 4
 ##########
 snippet extprop
-	//{{{ ${1:prop}
-	
+	// {{{ ${1:prop}
+
 	$1 : ''${2:,}
-	
-	//}}}
+
+	// }}}
 
 snippet extapp
 	// {{{ namespace
-	
+
 	Ext.ns('${1:AppName}');
-	
+
 	// }}}
 	// {{{ Ext.Loader
-	
+
 	Ext.Loader.setConfig({
 		enabled: true,
 		paths: {
@@ -117,41 +117,44 @@ snippet extapp
 			'$1': './src',
 		}
 	});
-	
+
 	// }}}
 	// {{{ Ext.application
-	
+
 	Ext.application({
-	
+
 		// {{{ name
-	
+
 		name: '$1',
-	
+
 		// }}}
 		// {{{ appFolder
-	
+
 		appFolder: '${3:src/app}',
-	
+
+		// }}}
+		// {{{ autoCreateViewport
+
+		autoCreateViewport: true,
+
 		// }}}
 		// {{{ controllers
-		/*
+
 		controllers: [
-			'XXXXXX'
+			'Main'
 		],
-		*/
+
 		// }}}
 		// {{{ launch
-	
+
 		launch: function() {
-	
-			Ext.create('$1.view.Viewport');
-	
+
 		}
-	
+
 		// }}}
-	
+
 	});
-	
+
 	// }}}
 
 snippet extviewport
@@ -213,12 +216,12 @@ snippet extviewport
 	// }}}
 
 snippet extpanel
-	// {{{ '${1:classname}',
+	// {{{ '${1:app}.view.${2:Panel}',
 	/**
-	 * @class $1
-	 * ${2:}
+	 * @class $1.view.$2
+	 * ${3:desctription}
 	 */
-	Ext.define('$1', {
+	Ext.define('$1.view.$2', {
 		// {{{ extend
 
 		extend : '${3:Ext.Panel}',
@@ -226,7 +229,145 @@ snippet extpanel
 		// }}}
 		// {{{ alias
 
-		alias : 'widget.${4:component}',
+		alias : 'widget.${4:panel}',
+
+		// }}}
+		// {{{ requires
+
+		requires : [
+		],
+
+		// }}}
+		// {{{ ui
+
+		//ui : 'styleclass',
+
+		// }}}
+		// {{{ title
+
+		title : '${5:title}',
+
+		// }}}
+		// {{{ store
+
+		store: '${6:Store}',
+
+		// }}}
+		// {{{ items
+
+		items : [{
+			html : 'item'
+		}]
+
+		// }}}
+	});
+	// }}}
+
+snippet extgrid
+	// {{{ '${1:app}.view.${2:GridPanel}',
+	/**
+	 * @class $1.view.$2
+	 * ${3:desctription}
+	 */
+	Ext.define('$1.view.$2', {
+		// {{{ extend
+
+		extend : '${3:Ext.grid.Panel}',
+
+		// }}}
+		// {{{ alias
+
+		alias : 'widget.${4:gridpanel}',
+
+		// }}}
+		// {{{ requires
+
+		requires : [
+		],
+
+		// }}}
+		// {{{ ui
+
+		//ui : 'styleclass',
+
+		// }}}
+		// {{{ title
+
+		title : '${5:title}',
+
+		// }}}
+		// {{{ store ページング時はinitComponentで生成
+
+		store: '${6:Store}',
+
+		// }}}
+
+		// {{{ items
+
+		columns: [{
+			id: 'id',
+			header: 'headertext',
+			dataIndex: 'dbfieldname',
+			width: 100,
+			renderer: function(val){
+				return '<div class="hogemoge">'+ val +'</div>';
+			}
+		}]
+
+		// }}}
+/*pager指定時
+		// {{{ pageSize
+
+			pageSize = 25;
+
+		// }}}
+		// {{{ initComponent
+
+		initComponent : function(){
+
+			var me = this;
+
+			me.store = Ext.create('ns.store.Store');
+			me.dockedItems = [{
+				xtype: 'pagingtoolbar',
+				store: me.store,
+				dock: 'bottom',
+				displayInfo: true
+			}];
+
+			me.callParent(arguments);
+		}
+
+		// }}}
+		// {{{ pager
+
+		dockedItems: [{
+			xtype: 'pagingtoolbar',
+			store: store,
+			dock: 'bottom',
+			displayInfo: true
+		}]
+
+		// }}}
+*/
+	});
+	// }}}
+
+snippet extcontainer
+	// {{{ '${1:app}.view.${2:Container}',
+	/**
+	 * @class $1.view.$2
+	 * ${3:desctription}
+	 */
+	Ext.define('$1.view.$2', {
+		// {{{ extend
+
+		extend : '${4:Ext.Container}',
+
+		// }}}
+		// {{{ alias
+
+		alias : 'widget.${5:Area}',
 
 		// }}}
 		// {{{ requires
@@ -251,29 +392,23 @@ snippet extpanel
 	// }}}
 
 snippet extmodel
-	// {{{ '${1:classname}',
+	// {{{ '${1:app}.model.${2:Model}',
 	/**
-	 * @class $1
-	 * ${2:}
+	 * @class $1.model.$2
+	 * ${3:desctription}
 	 */
-	Ext.define('$1', {
+	Ext.define('$1.model.$2', {
 		// {{{ extend
 
-		extend : '$2{Ext.data.Model}',
+		extend : '${4:Ext.data.Model}',
 
 		// }}}
 		// {{{ alias
 
-		alias : '${3:model}',
+		alias : '${5:model}',
 
 		// }}}
-		// {{{ requires
-
-		requires : [
-		],
-
-		// }}}
-		// {{{ fields 
+		// {{{ fields
 
 		fields: [
 			{name: 'hoge1', type: 'auto'/*, defaultValue: '', convert: function(){}*/},
@@ -285,32 +420,21 @@ snippet extmodel
 	});
 	// }}}
 
-snippet extstore
-	// {{{ '${1:classname}',
+snippet extarraystore
+	// {{{ '${1:app}.store.${2:Store}',
 	/**
-	 * @class $1
-	 * ${2:}
+	 * @class $1.store.$2
+	 * ${3:desctription}
 	 */
-	Ext.define('$1', {
+	Ext.define('$1.store.$2', {
 		// {{{ extend
 
-		extend : '${Ext.data.ArrayStore}',
-
-		// }}}
-		// {{{ alias
-
-		alias : '${2:store}',
-
-		// }}}
-		// {{{ requires
-
-		requires : [
-		],
+		extend : '${4:Ext.data.ArrayStore}',
 
 		// }}}
 		// {{{ model
 
-		model : '${3:model}',
+		model : '${5:model}',
 
 		// }}}
 		// {{{ data
@@ -323,46 +447,109 @@ snippet extstore
 	});
 	// }}}
 
-snippet extcontroller
-	// {{{ '${1:classname}',
+snippet extdirectstore
+	// {{{ '${1:app}.store.${2:Store}',
 	/**
-	 * @class $1
-	 * ${2:}
+	 * @class $1.store.$2
+	 * ${3:desctription}
 	 */
-	Ext.define('$1', {
+	Ext.define('$1.store.$2', {
+
 		// {{{ extend
 
-		extend : '${Ext.controller.Controller}',
+		extend : '${4:Ext.data.DirectStore}',
 
 		// }}}
-		// {{{ requires
+		// {{{ model
 
-		requires : [
-		],
+		model : '${5:model}',
 
 		// }}}
-		// {{{ views 
+		// {{{ autoLoad
+
+		autoLoad: true,//{start: 0, limit: 25},
+
+		// }}}
+		// {{{ root
+
+		root : '${6:data}',
+
+		// }}}
+		// {{{ totalProperty レコード総件数取得プロパティ
+
+		totalProperty: '${7:total}',
+
+		// }}}
+		// {{{ proxy
+
+		proxy: {
+			type: 'direct',
+			api:{
+				create  : ns.moduleclass.insertData,
+				read    : ns.moduleclass.selectData,
+				update  : ns.moduleclass.updatedata,
+				destroy : ns.moduleclass.deleteData
+			},
+			reader: {
+				type: 'json',
+				root: 'data',
+				successProperty: 'success'
+			}
+		}
+
+		// }}}
+
+	});
+	// }}}
+
+snippet extcontroller
+	// {{{ '${1:app}.controller.${2:Controller}',
+	/**
+	 * @class $1.store.$2
+	 * ${3:desctription}
+	 */
+	Ext.define('$1.controller.$2', {
+		// {{{ extend
+
+		extend : '${4:Ext.app.Controller}',
+
+		// }}}
+		// {{{ refs インスタンス化されたViewへの参照提供 get([R]efname)
+
+		refs: [{
+			selector: '${6:componentquery}',ref: '${5:refname}'
+		}],
+
+		// }}}
+		// {{{ views クラスへの参照提供 get(Xxxx)View
 
 		views:[
-			'Test'
+			'Views'
 		],
 
 		// }}}
-		// {{{ models 
+		// {{{ models クラスへの参照提供 get(Xxxx)Model
 
-		models: [
-			 'hoge'
+		views:[
+			'Views'
 		],
-		
+
 		// }}}
-		// {{{ stores
+		// {{{ stores インスタンスへの参照提供 get(Xxxx)Store
 
 		stores: [
-			'hoge'
+			'Store'
 		],
 
 		// }}}
-		// {{{ init 
+		// {{{ controllers インスタンスへの参照提供 get(Xxxx)Controller
+
+		controllers: [
+			'Controller'
+		],
+
+		// }}}
+		// {{{ init
 
 		//アプリケーション起動時にコールされる特別なメソッド
 		//ApplicationのLaunch前にコールされる
@@ -371,8 +558,12 @@ snippet extcontroller
 			this.control({
 
 				//コンポーネントクエリでのハンドラ設定
-				'viewport > panel': {
-					render: this.onXXXX
+				'${7:xtype} ${8:xtype}[${9:action=XXXX}]': {
+
+					click: function(){
+						this.getXXXX().fireEvent('event');
+					}
+
 				}
 
 			});
@@ -380,7 +571,7 @@ snippet extcontroller
 		},
 
 		// }}}
-		// {{{ onXXXX 
+		// {{{ onXXXX
 
 		onXXXX: function() {
 			console.log('hoge');
@@ -415,13 +606,13 @@ snippet extclass
 
 		// }}}
 		// {{{ config(prefonfigure setting)
-		
+
 		config : {
 			XXXX : '';
 		},
 
-		// }}}	
-		// {{{ constructor 
+		// }}}
+		// {{{ constructor
 
 		constructor : function(config){
 			ver me = this;
@@ -430,30 +621,280 @@ snippet extclass
 
 		// }}}
 		// {{{ applyXXXX
-		
+
 		applyXXXX : function(val){
 			return val;
 		},
 
 		// }}}
 		// {{{ statics
-		
+
 		statics : {
 		},
 
 		// }}}
 		// {{{ init
-		
+
 		init : function(){
 		},
 
 		// }}}
-	
+
 	}, function(){
 		var me = this;
 		me.init();
 	});
 
 	// }}}
+
+snippet initComponent
+	// {{{ initComponent
+
+	initComponent : function(){
+
+		var me = this;
+
+		me.callParent(arguments);
+
+	}
+
+	// }}}
+
+
+snippet xtextbutton
+abbr Ext.button.Button
+	button
+
+snippet xtextbuttongroup
+abbr Ext.container.ButtonGroup
+	buttongroup
+
+snippet xtextcolorpalette
+abbr Ext.picker.Color
+	colorpalette
+
+snippet xtextcomponent
+abbr Ext.Component
+	component
+
+snippet xtextcontainer
+abbr Ext.container.Container
+	container
+
+snippet xtextcycle
+abbr Ext.button.Cycle
+	cycle
+
+snippet xtextdataview
+abbr Ext.view.View
+	dataview
+
+snippet xtextdatepicker
+abbr Ext.picker.Date
+	datepicker
+
+snippet xtexteditor
+abbr Ext.Editor
+	editor
+
+snippet xtexteditorgrid
+abbr Ext.grid.plugin.Editing
+	editorgrid
+
+snippet xtextgrid
+abbr Ext.grid.Panel
+	grid
+
+snippet xtextmultislider
+abbr Ext.slider.Multi
+	multislider
+
+snippet xtextpanel
+abbr Ext.panel.Panel
+	panel
+
+snippet xtextprogress
+abbr Ext.ProgressBar
+	progress
+
+snippet xtextslider
+abbr Ext.slider.Single
+	slider
+
+snippet xtextspacer
+abbr Ext.toolbar.Spacer
+	spacer
+
+snippet xtextsplitbutton
+abbr Ext.button.Split
+	splitbutton
+
+snippet xtexttabpanel
+abbr Ext.tab.Panel
+	tabpanel
+
+snippet xtexttreepanel
+abbr Ext.tree.Panel
+	treepanel
+
+snippet xtextviewport
+abbr Ext.container.Viewport
+	viewport
+
+snippet xtextwindow
+abbr Ext.window.Window
+	window
+
+# Toolbar component
+abbr ----------------------
+	Toolbar component
+
+snippet xtt_paging
+abbr Ext.toolbar.Paging
+	paging
+
+snippet xtt_toolbar
+abbr Ext.toolbar.Toolbar
+	toolbar
+
+snippet xtt_tbfill
+abbr Ext.toolbar.Fill
+	tbfill
+
+snippet xtt_tbitem
+abbr Ext.toolbar.Item
+	tbitem
+
+snippet xtt_tbseparator
+abbr Ext.toolbar.Separator
+	tbseparator
+
+snippet xtt_tbspacer
+abbr Ext.toolbar.Spacer
+	tbspacer
+
+snippet xtt_tbtext
+abbr Ext.toolbar.TextItem
+	tbtext
+
+# Menu components
+abbr ----------------------
+	Menu components
+
+snippet xtmmenu
+abbr Ext.menu.Menu
+	menu
+
+snippet xtmmenucheckitem
+abbr Ext.menu.CheckItem
+	menucheckitem
+
+snippet xtmmenuitem
+abbr Ext.menu.Item
+	menuitem
+
+snippet xtmmenuseparator
+abbr Ext.menu.Separator
+	menuseparator
+
+snippet xtmmenutextitem
+abbr Ext.menu.Item
+	menutextitem
+
+# Form components
+abbr ----------------------
+	Form components
+
+snippet xtfform
+abbr Ext.form.Panel
+	form
+
+snippet xtfcheckbox
+abbr Ext.form.field.Checkbox
+	checkbox
+
+snippet xtfcombo
+abbr Ext.form.field.ComboBox
+	combo
+
+snippet xtfdatefield
+abbr Ext.form.field.Date
+	datefield
+
+snippet xtfdisplayfield
+abbr Ext.form.field.Display
+	displayfield
+
+snippet xtffield
+abbr Ext.form.field.Base
+	field
+
+snippet xtffieldset
+abbr Ext.form.FieldSet
+	fieldset
+
+snippet xtfhidden
+abbr Ext.form.field.Hidden
+	hidden
+
+snippet xtfhtmleditor
+abbr Ext.form.field.HtmlEditor
+	htmleditor
+
+snippet xtflabel
+abbr Ext.form.Label
+	label
+
+snippet xtfnumberfield
+abbr Ext.form.field.Number
+	numberfield
+
+snippet xtfradio
+abbr Ext.form.field.Radio
+	radio
+
+snippet xtfradiogroup
+abbr Ext.form.RadioGroup
+	radiogroup
+
+snippet xtftextarea
+abbr Ext.form.field.TextArea
+	textarea
+
+snippet xtftextfield
+abbr Ext.form.field.Text
+	textfield
+
+snippet xtftimefield
+abbr Ext.form.field.Time
+	timefield
+
+snippet xtftrigger
+abbr Ext.form.field.Trigger
+	trigger
+
+# Chart components
+abbr ----------------------
+	Chart components
+
+snippet xtchartchart
+abbr Ext.chart.Chart
+	chart
+
+snippet xtchartbarchart
+abbr Ext.chart.series.Bar
+	barchart
+
+snippet xtchartcolumnchart
+abbr Ext.chart.series.Column
+	columnchart
+
+snippet xtchartlinechart
+abbr Ext.chart.series.Line
+	linechart
+
+snippet xtchartpiechart
+abbr Ext.chart.series.Pie
+	piechart
 
 

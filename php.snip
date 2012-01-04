@@ -323,10 +323,11 @@ snippet server
 snippet session
 	\$_SESSION['${1:variable}']
 
-
-
-
-
+snippet Var
+abbr vardump
+	require_once "Var_Dump.php";
+	Var_Dump::displayInit(array('display_mode' => 'HTML4_Table'));
+	Var_Dump::display(  );
 
 snippet testClass
 abbr testClass
