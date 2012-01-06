@@ -315,10 +315,9 @@ snippet extgrid
 		}]
 
 		// }}}
-/*pager指定時
 		// {{{ pageSize
 
-			pageSize = 25;
+		pageSize: 25,
 
 		// }}}
 		// {{{ initComponent
@@ -327,6 +326,7 @@ snippet extgrid
 
 			var me = this;
 
+			//同一store指定
 			me.store = Ext.create('ns.store.Store');
 			me.dockedItems = [{
 				xtype: 'pagingtoolbar',
@@ -336,20 +336,11 @@ snippet extgrid
 			}];
 
 			me.callParent(arguments);
+
 		}
 
 		// }}}
-		// {{{ pager
-
-		dockedItems: [{
-			xtype: 'pagingtoolbar',
-			store: store,
-			dock: 'bottom',
-			displayInfo: true
-		}]
-
-		// }}}
-*/
+/
 	});
 	// }}}
 
@@ -401,11 +392,6 @@ snippet extmodel
 		// {{{ extend
 
 		extend : '${4:Ext.data.Model}',
-
-		// }}}
-		// {{{ alias
-
-		alias : '${5:model}',
 
 		// }}}
 		// {{{ fields
@@ -530,8 +516,8 @@ snippet extcontroller
 		// }}}
 		// {{{ models クラスへの参照提供 get(Xxxx)Model
 
-		views:[
-			'Views'
+		models:[
+			'Models'
 		],
 
 		// }}}
@@ -555,7 +541,8 @@ snippet extcontroller
 		//ApplicationのLaunch前にコールされる
 		init: function() {
 
-			this.control({
+			var me = this;
+			me.control({
 
 				//コンポーネントクエリでのハンドラ設定
 				'${7:xtype} ${8:xtype}[${9:action=XXXX}]': {
@@ -746,9 +733,6 @@ abbr Ext.window.Window
 	window
 
 # Toolbar component
-abbr ----------------------
-	Toolbar component
-
 snippet xtt_paging
 abbr Ext.toolbar.Paging
 	paging
@@ -778,9 +762,6 @@ abbr Ext.toolbar.TextItem
 	tbtext
 
 # Menu components
-abbr ----------------------
-	Menu components
-
 snippet xtmmenu
 abbr Ext.menu.Menu
 	menu
@@ -802,9 +783,6 @@ abbr Ext.menu.Item
 	menutextitem
 
 # Form components
-abbr ----------------------
-	Form components
-
 snippet xtfform
 abbr Ext.form.Panel
 	form
@@ -874,9 +852,6 @@ abbr Ext.form.field.Trigger
 	trigger
 
 # Chart components
-abbr ----------------------
-	Chart components
-
 snippet xtchartchart
 abbr Ext.chart.Chart
 	chart
